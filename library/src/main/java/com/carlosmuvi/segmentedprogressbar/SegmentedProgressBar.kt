@@ -45,11 +45,11 @@ class SegmentedProgressBar : View {
             val segmentWidth = segmentWidth * percentComplete
 
             currentSegmentProgressInPx = currentTicks * segmentWidth / totalTicks
-            if (totalTicks <= currentTicks) {
+            if (totalTicks <= currentTicks && percentComplete == 100) {
                 lastCompletedSegment++
                 currentSegmentProgressInPx = 0
             }
-            if (totalTicks == currentTicks) segmentCompletedListener?.onSegmentCompleted(lastCompletedSegment)
+            if (totalTicks == currentTicks && percentComplete == 100) segmentCompletedListener?.onSegmentCompleted(lastCompletedSegment)
             invalidate()
         }
     }
