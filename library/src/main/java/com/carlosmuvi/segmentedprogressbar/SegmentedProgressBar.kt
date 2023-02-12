@@ -29,7 +29,7 @@ class SegmentedProgressBar : View {
     }
 
     private fun initView(attrs: AttributeSet? = null) {
-        initDrawingTimer()
+        //initDrawingTimer()
         initPropertiesModel(attrs)
         containerRectanglePaint = buildContainerRectanglePaint(properties.containerColor)
         fillRectanglePaint = buildFillRectanglePaint(properties.fillColor)
@@ -39,10 +39,10 @@ class SegmentedProgressBar : View {
         properties = PropertiesModel(context, attrs)
     }
 
-    private fun initDrawingTimer() {
+    fun initDrawingTimer(percentComplete:Int) {
         drawingTimer = DrawingTimer()
         drawingTimer.setListener { currentTicks, totalTicks ->
-            val segmentWidth = segmentWidth
+            val segmentWidth = segmentWidth * percentComplete
 
             currentSegmentProgressInPx = currentTicks * segmentWidth / totalTicks
             if (totalTicks <= currentTicks) {
